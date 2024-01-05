@@ -1,0 +1,211 @@
+<!------------------------------------------------
+Trabajo [1]
+
+Conceptos de Desarrollo de Software
+Trabajo Práctico Integrador Entregable
+HTML & PHP
+
+Cantidad de documentos: 2 (index.html & recepcion.php)
+Software utilizado: Sublime Text, Firefox, XAMPP Apache.
+
+Fecha de inicio: 09/06/2022
+Última actualización: 21/06/2022
+-------------------------------------------------->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/microsoft/74/purple-heart_1f49c.png"/> <!-- Ícono de la Página -->
+	<title>Tienda</title> <!-- Título de la página -->
+
+	<style> /* --- Estilo de la página --- */
+
+	@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap');
+
+	.highlight .comment {color: lightgreen; font-style: italic;}
+
+	* {
+		font-family: "Fira Code", monospace;
+		font-size: 13px;
+		font-weight: 400;
+		image-rendering: -webkit-optimize-contrast;
+		-webkit-font-smoothing: subpixel-antialiased;
+		font-smoothing: subpixel-antialiased;
+	}
+
+	body {
+		background-color: #f5f5f5;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	.container {
+		display: block;
+		height: 100%;
+		margin: 0 auto;
+		animation: page 2s;
+		}		
+		@-moz-keyframes page {
+		    from { opacity: 0; }
+		    to   { opacity: 1; }
+	}
+
+	.window {
+		background: #dddddd;
+		border: solid 0px #feb123;
+		border-radius: 10px;
+		box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15), 0px 8px 16px rgba(0, 0, 0, 0.15);
+		padding: 15px;
+		margin: 0;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+		width: 540px;
+	}
+
+	table {border-collapse: collapse; table-layout: fixed; width: 100%;}
+
+	td#title { padding-top: 15px;}
+	td#Detalle { padding-left: 20px;}
+	tr#Detalle {
+		height: 55px;
+		border-left: solid 2px #000;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		background-image: linear-gradient(to right, rgba(245,245,245,0.4), rgba(221,221,221,0));
+	}
+
+	td {
+		padding: 5px;
+		border: solid 0px black;
+		text-align: left;
+	}
+
+	form input#FechaInput {width: auto !important;}
+	td#action {text-align: center;}
+	form input {width: 110px !important;}
+
+	input#button {
+		width: auto !important;
+		margin-top: 15px;
+		margin-bottom: 5px;
+		border-radius: 0px;
+		border: solid 1px rgba(255,255,255,0.5);
+		height: 23px;
+		background-image: linear-gradient(to right, rgba(245,245,245,0.4), rgba(221,221,221,0));
+	}	
+
+	input::placeholder {font-size: 9px;}
+
+	input {
+		border: solid 1px transparent;
+		background: transparent;
+		transition: all .1s ease-in-out;
+	}
+
+	input:hover {
+		box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 0px 16px rgba(0, 0, 0, 0.05);
+		transition: all .1s ease-in-out;
+	}
+
+	input:focus {
+		border: solid 1px rgba(0,0,0,0.5);
+		background: transparent;
+		outline: none !important;
+		box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 0px 16px rgba(0, 0, 0, 0.05);
+	}
+
+	select {
+		/* --- Botón de Impuesto --- */	
+		width: auto !important;
+		border-radius: 0px;
+		border: solid 1px #000;
+	} 
+
+	/* --- Selección de texto ----- */
+	::selection {background: rgba(252,84,83,0.5); color: #000;}
+	::-moz-selection {background: rgba(252,84,83,0.5); color: #000;}
+</style>
+</head>
+
+<body>
+<div class="container">
+	<div class="window">
+		<form name="tienda" action="recepcion.php" method="POST"> <!-- Creo un formulario que se llama "tienda", cuyos datos se almacenarán en el archivo "recepcion.php" mediante el método "POST" -->
+			<table>  <!-- Creo una Tabla -->
+				<tr> <!-- Fila de Fecha -->
+					<td><label for="Fecha">Fecha:</label></td>
+					<td><input type="date" name="fecha" id="FechaInput" title="Ingrese la fecha de hoy." alt="Ingrese la fecha de hoy." required></td></tr>
+					
+				<tr> <!-- Fila del Nombre -->
+					<td><label for="Nombre">Nombre:</label></td>
+					<td><input type="text" name="nombre" placeholder="Ingrese Nombre" required></td></tr>
+
+				<tr> <!-- Fila de Impuestos -->
+					<td><label for="Impuesto">Impuesto:</label></td>
+					<td><select name="impuesto" required>
+						<option value="">Seleccione</option>
+						<option value="0" title=":)" alt=":)">Impuesto (0%)</option>
+						<option value="7">Impuesto (7%)</option>
+						<option value="21">Impuesto (21%)</option>
+						<option value="45">Impuesto (45%)</option>
+						<option value="60">Impuesto (60%)</option>
+						<option value="77">Impuesto (77%)</option>
+						<option value="93">Impuesto (93%)</option>
+						<option value="100">Impuesto (100%)</option>
+						<option value="125">Impuesto (125%)</option>
+						</select></td></tr>
+
+				<tr><td><br></td></tr>
+				<tr id="Detalle"> <!-- Fila de Detalle -->
+					<td id="Detalle" colspan="4">Detalle</td>
+				</tr>
+
+				<tr id="title"> <!-- Fila de Código, Descripción, Cantidad y Precio -->
+					<td id="title">Código</td>
+					<td id="title">Descripción</td>
+					<td id="title">Cantidad</td>
+					<td id="title">Precio</td>
+				</tr>
+
+				<tr id="items"> <!-- Fila de item 1 -->
+					<td><input type="text" name="codigo_item1" placeholder="Ingrese código" required></td>
+					<td><input type="text" name="descripcion_item1" placeholder="Ingrese descripción" required></td>
+					<td><input type="number" name="cantidad_item1" min="0" max="100" placeholder="Ingrese cantidad" required></td>
+					<td><input type="number" name="precio_item1" min="0" max=100000 placeholder="0.00 $" required></td>
+				</tr>
+
+				<tr id="items"> <!-- Fila de item 2 -->
+					<td><input type="text" name="codigo_item2" placeholder="Ingrese código"></td>
+					<td><input type="text" name="descripcion_item2" placeholder="Ingrese descripción"></td>
+					<td><input type="number" name="cantidad_item2" min="0" max="100" placeholder="Ingrese cantidad"></td>
+					<td><input type="number" name="precio_item2" min="0" max=100000 placeholder="0.00 $"></td>
+				</tr>
+
+				<tr id="items"> <!-- Fila de item 3 -->
+					<td><input type="text" name="codigo_item3" placeholder="Ingrese código"></td>
+					<td><input type="text" name="descripcion_item3" placeholder="Ingrese descripción"></td>
+					<td><input type="number" name="cantidad_item3" min="0" max="100" placeholder="Ingrese cantidad"></td>
+					<td><input type="number" name="precio_item3" min="0" max=100000 placeholder="0.00 $"></td>
+				</tr>
+
+				<tr><td colspan="4"></td></tr>
+
+				<tr> <!-- Fila de botón Enviar, Limpiar Datos y Actualizar Sistema -->
+					<td id="action" colspan=4>
+						<input type="submit" id="button" value="Registrar" title="Registrar los datos en el Sistema." alt="Registrar los datos en el Sistema.">
+						<input type="reset" id="button" value="Limpiar Datos" title="Eliminar los datos ingresados." alt="Eliminar los datos ingresados.">
+						<input type="button" id="button" value="Actualizar Sistema" onClick="window.location.reload();" title="Vuelve a cargar la página sin perder los datos." alt="Vuelve a cargar la página sin perder los datos.">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+</body>
+</html>
